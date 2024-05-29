@@ -1,0 +1,49 @@
+¿El siguiente código tiene un problema?, si es así, ¿como se puede solucionar?
+ const [_nombre, setNombre] = useState(null);
+ const [_rut, setRut] = useState(null);
+ const [saveForm, setSaveform] = useState(true);
+
+ useEffect(async() =>{
+ await save(
+ {
+ nombre: _nombre,
+rut: _rut, 
+ }
+ ); 
+}, [saveForm])
+
+Respuesta: Sí, el código tiene un problema. La función que pasas a useEffect no debería ser async. En su lugar, deberías crear una función async separada dentro de useEffect y llamarla.
+
+useEffect(() => {
+  const saveData = async () => {
+    await save({
+      nombre: _nombre,
+      rut: _rut, 
+    });
+  };
+
+  saveData();
+}, [saveForm]);
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Que realiza el siguiente código? (esto esta escrito en C#.NET dentro de un Webform
+
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ int idOperacion = Convert.ToInt32(Request.QueryString["idOperacion"]);
+ if (!Page.IsPostBack)
+ {
+ if (idOperacion == 0)
+ {
+ Response.Redirect("MisRevisiones.aspx");
+}
+ obtenerDetalleMisSolicitudes(idOperacion);
+ }
+ }
+
+Respuesta: 1.	Obtiene el valor del parámetro idOperacion de la cadena de consulta de la solicitud HTTP.
+2.	Convierte el valor de idOperacion a un entero.
+3.	Comprueba si la página está siendo cargada por primera vez o si es el resultado de un postback. 
+4.	Si idOperacion es 0, redirige al usuario a la página MisRevisiones.aspx.
