@@ -68,12 +68,11 @@ namespace ServerSide.Controllers
         }
 
         // GET api/usuarios/perfiles
-        //[HttpGet("perfiles")]
-        //public async Task<ActionResult<IEnumerable<Perfil>>> GetPerfiles()
-        //{
-        //  return await _context.Perfiles.ToListAsync();
-        //}
-        //}
+        [HttpGet("perfiles")]
+        public async Task<ActionResult<IEnumerable<Perfil>>> GetPerfiles()
+        {
+            return Ok(await _context.Perfiles.ToListAsync());
+        }
 
 
 
@@ -82,6 +81,7 @@ namespace ServerSide.Controllers
 
 
             // Declara las propiedades como no que admiten un valor NULL
+            public int id_usuario { get; set; }
             public string NombreUsuario { get; set; }
             public string Password { get; set; }
             public Perfil Perfil { get; set; }
@@ -92,6 +92,7 @@ namespace ServerSide.Controllers
         public class Perfil
         {
             // Declara las propiedades como que no admiten un valor NULL
+            public int id_perfil { get; set; }
             public string NombrePerfil { get; set; }
             public List<Usuario> Usuarios { get; set; }
             // ...

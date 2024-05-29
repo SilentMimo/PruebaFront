@@ -1,7 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using ServerSide.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add DbContext
+builder.Services.AddDbContext<BaseDatosTestContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BaseDatosTestConnection"),
+    sqlServerOptionsAction: sqlOptions =>
+    {
+        sqlOptions.EnableRetryOnFailure(
+           maxRetryCount: 5,
+           maxRetryDelay: TimeSpan.FromSeconds(30),
+           errorNumbersToAdd: null);
+    }));
 
 // Add CORS policy
 builder.Services.AddCors(options =>

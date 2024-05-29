@@ -17,6 +17,10 @@ namespace ServerSide.Models
         {
             modelBuilder.Entity<Usuario>().ToTable("USUARIO");
             modelBuilder.Entity<Perfil>().ToTable("PERFIL");
+
+            // Configura la clave primaria de la entidad Perfil y Usuario
+            modelBuilder.Entity<Usuario>().HasKey(u => u.id_usuario);
+            modelBuilder.Entity<Perfil>().HasKey(p => p.id_perfil);
         }
     }
 }
